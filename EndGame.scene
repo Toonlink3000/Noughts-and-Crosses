@@ -1,0 +1,180 @@
+//Scene file do not make any changes here.
+global EndGame_base_width = 1024
+global EndGame_base_height = 768
+global EndGame_device_width = 1024
+global EndGame_device_height = 768
+global EndGame_fadesprite, EndGame_fadeimage as integer
+global EndGame_tween# as float
+global EndGame_change_window = 1
+global EndGame_loaded = 0
+global EndGame_sprites as integer[1]
+global EndGame_sprites_count_x as float[1]
+global EndGame_sprites_count_y as float[1]
+global EndGame_text as integer[2]
+global EndGame_button as integer[3]
+global EndGame_ResultText as integer
+global EndGame_ReplayButton as integer
+global EndGame_MainMenuButton as integer
+
+function EndGame_create_window( winflag as integer )
+	EndGame_change_window = winflag
+endfunction
+
+function EndGame_setup()
+	if EndGame_loaded = 1 then exitfunction
+	EndGame_loaded = 1
+	if EndGame_change_window = 1
+		SetVirtualResolution(EndGame_base_width,EndGame_base_height)
+		SetWindowSize(EndGame_device_width,EndGame_device_height,0)
+		SetClearColor(0,0,0)
+	endif
+	SetPhysicsWallTop(1)
+	SetPhysicsWallBottom(1)
+	SetPhysicsWallLeft(1)
+	SetPhysicsWallRight(1)
+	EndGame_text[1] = CreateText( "Game Result" )
+	EndGame_ResultText = EndGame_text[1]
+	SetTextPosition(EndGame_text[1],210.651428,61.440002)
+	SetTextSize(EndGame_text[1],125.469727)
+	SetTextDepth(EndGame_text[1],9)
+	SetTextVisible(EndGame_text[1],1)
+	EndGame_button[1] = EndGame_GetNextVirtualButton()
+	AddVirtualButton(EndGame_button[1],20,20,40)
+	SetVirtualButtonText(EndGame_button[1],"Play Again")
+	EndGame_ReplayButton = EndGame_button[1]
+	SetVirtualButtonPosition(EndGame_button[1],274.285736,526.628540)
+	SetVirtualButtonSize(EndGame_button[1],220.434296,128.274292)
+	SetVirtualButtonVisible(EndGame_button[1],1)
+	EndGame_button[2] = EndGame_GetNextVirtualButton()
+	AddVirtualButton(EndGame_button[2],20,20,40)
+	SetVirtualButtonText(EndGame_button[2],"Main Menu")
+	EndGame_MainMenuButton = EndGame_button[2]
+	SetVirtualButtonPosition(EndGame_button[2],671.451416,533.211426)
+	SetVirtualButtonSize(EndGame_button[2],226.243530,142.908569)
+	SetVirtualButtonVisible(EndGame_button[2],1)
+endfunction
+
+function EndGame_sync()
+	if EndGame_loaded = 0 then EndGame_setup()
+	EndGame_tween# = 60/(1.0/GetFrameTime())
+endfunction
+
+function EndGame_cleanup()
+	local i as integer
+	if EndGame_loaded = 0 then exitfunction
+	for i = 0 to EndGame_sprites.length
+		if GetSpriteExists( EndGame_sprites[i] ) then DeleteSprite( EndGame_sprites[i] )
+	next i
+	for i = 0 to EndGame_text.length
+		if GetTextExists( EndGame_text[i] ) then DeleteText( EndGame_text[i] )
+	next i
+	for i = 1 to EndGame_button.length-1
+		if GetVirtualButtonExists( EndGame_button[i] ) then DeleteVirtualButton( EndGame_button[i] )
+	next i
+		if GetSpriteExists(EndGame_fadesprite) then DeleteSprite(EndGame_fadesprite)
+		EndGame_fadesprite = 0
+		if GetImageExists(EndGame_fadeimage) then DeleteImage(EndGame_fadeimage)
+	EndGame_loaded = 0
+endfunction
+
+function EndGame_fade( percent as float )
+	local fMul as float
+	local i as integer
+	fMul = percent / 100.0
+	if fMul > 1.0 then fMul = 1.0
+	if fMul < 0.0 then fMul = 0.0
+	if fMul = 1.0
+		if GetSpriteExists(EndGame_fadesprite) then DeleteSprite(EndGame_fadesprite)
+		EndGame_fadesprite = 0
+		if GetImageExists(EndGame_fadeimage) then DeleteImage(EndGame_fadeimage)
+		exitfunction
+	endif
+	if EndGame_loaded = 0 then EndGame_setup()
+	if not GetSpriteExists( EndGame_fadesprite )
+		EndGame_fadeimage = CreateImageColor(0,0,0,255)
+		EndGame_fadesprite = CreateSprite(EndGame_fadeimage)
+		SetSpriteDepth(EndGame_fadesprite,0)
+		SetSpritePosition(EndGame_fadesprite,0,0)
+		SetSpriteSize(EndGame_fadesprite,GetDeviceWidth(),GetDeviceHeight())
+	endif
+	SetSpriteColor(EndGame_fadesprite,0,0,0,255-255*fMul)
+	for i = 1 to EndGame_button.length-1
+		if GetVirtualButtonExists( EndGame_button[i] ) then SetVirtualButtonAlpha(EndGame_button[i],255*fMul)
+	next i
+endfunction
+
+function EndGame_GetNextVirtualButton( )
+	local i as integer
+	local ret as integer
+	ret = 1
+	for i = 1 to 100
+		if not GetVirtualButtonExists( i )
+			ret = i
+			exit
+		endif
+	next i
+endfunction ret
+
+
+REMSTART
+##################################################
+#### Settings: Do not make any changes below. ####
+##################################################
+
+scenename: EndGame
+gridx: 32.000000
+gridy: 32.000000
+gridon: 1
+sceneresolutiontext: L: 1024x768 (1.33)   iPad/iPad 2/iPad Mini
+screenwidth: 1024
+screenheight: 768
+scenebackr: 0
+scenebackg: 0
+scenebackb: 0
+scenebacka: 255
+followdeviceres: 0
+basewidth: 1024
+baseheight: 768
+scenegravityx: 0.000000
+scenegravityy: 50.000000
+scenewalltop: 1
+scenewallbottom: 1
+scenewallleft: 1
+scenewallright: 1
+scenemaxpolygon: 8
+scenepercentage: 0
+spriteindex: 0
+addtext: Text 1
+mediatype: 2
+mediavisible: 1
+spritevariable: EndGame_ResultText
+mediatext: Game Result
+spriteposx: 210.651428
+spriteposy: 61.440002
+spritesizex: 582.066833
+spritesizey: 125.469727
+spritedepth: 9
+spriteindex: 0
+addbutton: Button 1
+mediatype: 3
+mediavisible: 1
+spritevariable: EndGame_ReplayButton
+mediatext: Play Again
+spriteposx: 274.285736
+spriteposy: 526.628540
+spritesizex: 220.434296
+spritesizey: 128.274292
+spritedepth: 9
+spriteindex: 0
+addbutton: Button 2
+mediatype: 3
+mediavisible: 1
+spritevariable: EndGame_MainMenuButton
+mediatext: Main Menu
+spriteposx: 671.451416
+spriteposy: 533.211426
+spritesizex: 226.243530
+spritesizey: 142.908569
+spritedepth: 9
+
+REMEND

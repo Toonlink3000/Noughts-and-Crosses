@@ -1,0 +1,188 @@
+//Scene file do not make any changes here.
+global MainMenu_base_width = 1024
+global MainMenu_base_height = 768
+global MainMenu_device_width = 1024
+global MainMenu_device_height = 768
+global MainMenu_fadesprite, MainMenu_fadeimage as integer
+global MainMenu_tween# as float
+global MainMenu_change_window = 1
+global MainMenu_loaded = 0
+global MainMenu_sprites as integer[1]
+global MainMenu_sprites_count_x as float[1]
+global MainMenu_sprites_count_y as float[1]
+global MainMenu_text as integer[4]
+global MainMenu_button as integer[2]
+global MainMenu_PlayButton as integer
+
+function MainMenu_create_window( winflag as integer )
+	MainMenu_change_window = winflag
+endfunction
+
+function MainMenu_setup()
+	if MainMenu_loaded = 1 then exitfunction
+	MainMenu_loaded = 1
+	if MainMenu_change_window = 1
+		SetVirtualResolution(MainMenu_base_width,MainMenu_base_height)
+		SetWindowSize(MainMenu_device_width,MainMenu_device_height,0)
+		SetClearColor(0,0,0)
+	endif
+	SetPhysicsWallTop(1)
+	SetPhysicsWallBottom(1)
+	SetPhysicsWallLeft(1)
+	SetPhysicsWallRight(1)
+	MainMenu_text[1] = CreateText( "Noughts and Crosses" )
+	SetTextPosition(MainMenu_text[1],60.468571,50.468571)
+	SetTextSize(MainMenu_text[1],117.654060)
+	SetTextDepth(MainMenu_text[1],9)
+	SetTextVisible(MainMenu_text[1],1)
+	MainMenu_button[1] = MainMenu_GetNextVirtualButton()
+	AddVirtualButton(MainMenu_button[1],20,20,40)
+	SetVirtualButtonText(MainMenu_button[1],"Play")
+	MainMenu_PlayButton = MainMenu_button[1]
+	SetVirtualButtonPosition(MainMenu_button[1],512.000000,548.571411)
+	SetVirtualButtonSize(MainMenu_button[1],184.228577,184.228577)
+	SetVirtualButtonVisible(MainMenu_button[1],1)
+	MainMenu_text[2] = CreateText( "Daniel Coats 2022" )
+	SetTextPosition(MainMenu_text[2],728.879333,718.584412)
+	SetTextSize(MainMenu_text[2],40.000000)
+	SetTextDepth(MainMenu_text[2],9)
+	SetTextVisible(MainMenu_text[2],1)
+	MainMenu_text[3] = CreateText( "Licenced under GPLv3" )
+	SetTextPosition(MainMenu_text[3],10.000000,715.000000)
+	SetTextSize(MainMenu_text[3],40.000000)
+	SetTextDepth(MainMenu_text[3],9)
+	SetTextVisible(MainMenu_text[3],1)
+endfunction
+
+function MainMenu_sync()
+	if MainMenu_loaded = 0 then MainMenu_setup()
+	MainMenu_tween# = 60/(1.0/GetFrameTime())
+endfunction
+
+function MainMenu_cleanup()
+	local i as integer
+	if MainMenu_loaded = 0 then exitfunction
+	for i = 0 to MainMenu_sprites.length
+		if GetSpriteExists( MainMenu_sprites[i] ) then DeleteSprite( MainMenu_sprites[i] )
+	next i
+	for i = 0 to MainMenu_text.length
+		if GetTextExists( MainMenu_text[i] ) then DeleteText( MainMenu_text[i] )
+	next i
+	for i = 1 to MainMenu_button.length-1
+		if GetVirtualButtonExists( MainMenu_button[i] ) then DeleteVirtualButton( MainMenu_button[i] )
+	next i
+		if GetSpriteExists(MainMenu_fadesprite) then DeleteSprite(MainMenu_fadesprite)
+		MainMenu_fadesprite = 0
+		if GetImageExists(MainMenu_fadeimage) then DeleteImage(MainMenu_fadeimage)
+	MainMenu_loaded = 0
+endfunction
+
+function MainMenu_fade( percent as float )
+	local fMul as float
+	local i as integer
+	fMul = percent / 100.0
+	if fMul > 1.0 then fMul = 1.0
+	if fMul < 0.0 then fMul = 0.0
+	if fMul = 1.0
+		if GetSpriteExists(MainMenu_fadesprite) then DeleteSprite(MainMenu_fadesprite)
+		MainMenu_fadesprite = 0
+		if GetImageExists(MainMenu_fadeimage) then DeleteImage(MainMenu_fadeimage)
+		exitfunction
+	endif
+	if MainMenu_loaded = 0 then MainMenu_setup()
+	if not GetSpriteExists( MainMenu_fadesprite )
+		MainMenu_fadeimage = CreateImageColor(0,0,0,255)
+		MainMenu_fadesprite = CreateSprite(MainMenu_fadeimage)
+		SetSpriteDepth(MainMenu_fadesprite,0)
+		SetSpritePosition(MainMenu_fadesprite,0,0)
+		SetSpriteSize(MainMenu_fadesprite,GetDeviceWidth(),GetDeviceHeight())
+	endif
+	SetSpriteColor(MainMenu_fadesprite,0,0,0,255-255*fMul)
+	for i = 1 to MainMenu_button.length-1
+		if GetVirtualButtonExists( MainMenu_button[i] ) then SetVirtualButtonAlpha(MainMenu_button[i],255*fMul)
+	next i
+endfunction
+
+function MainMenu_GetNextVirtualButton( )
+	local i as integer
+	local ret as integer
+	ret = 1
+	for i = 1 to 100
+		if not GetVirtualButtonExists( i )
+			ret = i
+			exit
+		endif
+	next i
+endfunction ret
+
+
+REMSTART
+##################################################
+#### Settings: Do not make any changes below. ####
+##################################################
+
+scenename: MainMenu
+gridx: 32.000000
+gridy: 32.000000
+gridon: 1
+sceneresolutiontext: L: 1024x768 (1.33)   iPad/iPad 2/iPad Mini
+screenwidth: 1024
+screenheight: 768
+scenebackr: 0
+scenebackg: 0
+scenebackb: 0
+scenebacka: 255
+followdeviceres: 0
+basewidth: 1024
+baseheight: 768
+scenegravityx: 0.000000
+scenegravityy: 50.000000
+scenewalltop: 1
+scenewallbottom: 1
+scenewallleft: 1
+scenewallright: 1
+scenemaxpolygon: 8
+scenepercentage: 0
+spriteindex: 0
+addtext: Text 1
+mediatype: 2
+mediavisible: 1
+mediatext: Noughts and Crosses
+spriteposx: 60.468571
+spriteposy: 50.468571
+spritesizex: 924.170898
+spritesizey: 117.654060
+spritedepth: 9
+spriteindex: 0
+addbutton: Button 1
+mediatype: 3
+mediavisible: 1
+spritevariable: MainMenu_PlayButton
+mediatext: Play
+spriteposx: 512.000000
+spriteposy: 548.571411
+spritesizex: 184.228577
+spritesizey: 184.228577
+spritedepth: 9
+spriteindex: 0
+addtext: Text 2
+mediatype: 2
+mediavisible: 1
+mediatext: Daniel Coats 2022
+spriteposx: 728.879333
+spriteposy: 718.584412
+spritesizex: 302.000000
+spritesizey: 40.000000
+spritedepth: 9
+spriteindex: 0
+addtext: Text 3
+mediatype: 2
+mediavisible: 1
+mediatext: Licenced under GPLv3
+spriteposx: 10.000000
+spriteposy: 715.000000
+spritesizex: 350.000000
+spritesizey: 40.000000
+spritedepth: 9
+
+REMEND

@@ -1,0 +1,430 @@
+//Scene file do not make any changes here.
+global Game_base_width = 1024
+global Game_base_height = 768
+global Game_device_width = 1024
+global Game_device_height = 768
+global Game_fadesprite, Game_fadeimage as integer
+global Game_tween# as float
+global Game_change_window = 1
+global Game_loaded = 0
+global Game_images as integer[4]
+global Game_sprites as integer[14]
+global Game_sprites_count_x as float[14]
+global Game_sprites_count_y as float[14]
+global Game_text as integer[3]
+global Game_slot1 as integer
+global Game_slot2 as integer
+global Game_slot3 as integer
+global Game_slot4 as integer
+global Game_slot7 as integer
+global Game_slot5 as integer
+global Game_slot6 as integer
+global Game_slot8 as integer
+global Game_slot9 as integer
+
+function Game_create_window( winflag as integer )
+	Game_change_window = winflag
+endfunction
+
+function Game_setup()
+	if Game_loaded = 1 then exitfunction
+	Game_loaded = 1
+	if Game_change_window = 1
+		SetVirtualResolution(Game_base_width,Game_base_height)
+		SetWindowSize(Game_device_width,Game_device_height,0)
+		SetClearColor(255,254,254)
+	endif
+	SetPhysicsWallTop(1)
+	SetPhysicsWallBottom(1)
+	SetPhysicsWallLeft(1)
+	SetPhysicsWallRight(1)
+	Game_images[1] = LoadImage("lines.png")
+	Game_text[1] = CreateText( "Player 1" )
+	SetTextPosition(Game_text[1],32.000000,32.000000)
+	SetTextSize(Game_text[1],40.000000)
+	SetTextColor(Game_text[1],0,0,0,255)
+	SetTextDepth(Game_text[1],9)
+	SetTextVisible(Game_text[1],1)
+	Game_text[2] = CreateText( "Player 2" )
+	SetTextPosition(Game_text[2],864.000000,32.000000)
+	SetTextSize(Game_text[2],40.000000)
+	SetTextColor(Game_text[2],0,0,0,255)
+	SetTextDepth(Game_text[2],9)
+	SetTextVisible(Game_text[2],1)
+	Game_sprites[1] = CreateSprite( Game_images[1] )
+	SetSpritePosition(Game_sprites[1],359.682617,162.000000)
+	SetSpriteSize(Game_sprites[1],14.636780,508.762878)
+	SetSpriteDepth(Game_sprites[1],5000)
+	Game_sprites[2] = CreateSprite( Game_images[1] )
+	SetSpritePosition(Game_sprites[2],165.494263,322.834564)
+	SetSpriteSize(Game_sprites[2],625.993652,16.457851)
+	SetSpriteDepth(Game_sprites[2],5000)
+	Game_sprites[3] = CreateSprite( Game_images[1] )
+	SetSpritePosition(Game_sprites[3],548.575806,152.304489)
+	SetSpriteSize(Game_sprites[3],14.636780,508.762878)
+	SetSpriteDepth(Game_sprites[3],5000)
+	Game_sprites[4] = CreateSprite( Game_images[1] )
+	SetSpritePosition(Game_sprites[4],167.951004,489.456116)
+	SetSpriteSize(Game_sprites[4],625.993652,16.457851)
+	SetSpriteDepth(Game_sprites[4],5000)
+	Game_sprites[5] = CreateSprite( Game_images[1] )
+	Game_slot1 = Game_sprites[5]
+	SetSpritePosition(Game_sprites[5],188.149414,160.232635)
+	SetSpriteSize(Game_sprites[5],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[5],206,206,206,255)
+	SetSpriteDepth(Game_sprites[5],5000)
+	SetSpriteVisible(Game_sprites[5],0)
+	Game_sprites[6] = CreateSprite( Game_images[1] )
+	Game_slot2 = Game_sprites[6]
+	SetSpritePosition(Game_sprites[6],382.388580,160.017044)
+	SetSpriteSize(Game_sprites[6],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[6],206,206,206,255)
+	SetSpriteDepth(Game_sprites[6],5000)
+	SetSpriteVisible(Game_sprites[6],0)
+	Game_sprites[7] = CreateSprite( Game_images[1] )
+	Game_slot3 = Game_sprites[7]
+	SetSpritePosition(Game_sprites[7],575.665100,159.801453)
+	SetSpriteSize(Game_sprites[7],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[7],206,206,206,255)
+	SetSpriteDepth(Game_sprites[7],5000)
+	SetSpriteVisible(Game_sprites[7],0)
+	Game_sprites[8] = CreateSprite( Game_images[1] )
+	Game_slot4 = Game_sprites[8]
+	SetSpritePosition(Game_sprites[8],187.933823,335.218872)
+	SetSpriteSize(Game_sprites[8],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[8],206,206,206,255)
+	SetSpriteDepth(Game_sprites[8],5000)
+	SetSpriteVisible(Game_sprites[8],0)
+	Game_sprites[9] = CreateSprite( Game_images[1] )
+	Game_slot7 = Game_sprites[9]
+	SetSpritePosition(Game_sprites[9],185.792938,511.167725)
+	SetSpriteSize(Game_sprites[9],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[9],206,206,206,255)
+	SetSpriteDepth(Game_sprites[9],5000)
+	SetSpriteVisible(Game_sprites[9],0)
+	Game_sprites[10] = CreateSprite( Game_images[1] )
+	Game_slot5 = Game_sprites[10]
+	SetSpritePosition(Game_sprites[10],383.135620,335.965912)
+	SetSpriteSize(Game_sprites[10],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[10],206,206,206,255)
+	SetSpriteDepth(Game_sprites[10],5000)
+	SetSpriteVisible(Game_sprites[10],0)
+	Game_sprites[11] = CreateSprite( Game_images[1] )
+	Game_slot6 = Game_sprites[11]
+	SetSpritePosition(Game_sprites[11],572.974060,332.508728)
+	SetSpriteSize(Game_sprites[11],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[11],206,206,206,255)
+	SetSpriteDepth(Game_sprites[11],5000)
+	SetSpriteVisible(Game_sprites[11],0)
+	Game_sprites[12] = CreateSprite( Game_images[1] )
+	Game_slot8 = Game_sprites[12]
+	SetSpritePosition(Game_sprites[12],387.517700,506.885925)
+	SetSpriteSize(Game_sprites[12],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[12],206,206,206,255)
+	SetSpriteDepth(Game_sprites[12],5000)
+	SetSpriteVisible(Game_sprites[12],0)
+	Game_sprites[13] = CreateSprite( Game_images[1] )
+	Game_slot9 = Game_sprites[13]
+	SetSpritePosition(Game_sprites[13],584.448303,502.819733)
+	SetSpriteSize(Game_sprites[13],156.761841,156.761841)
+	SetSpriteColor(Game_sprites[13],206,206,206,255)
+	SetSpriteDepth(Game_sprites[13],5000)
+	SetSpriteVisible(Game_sprites[13],0)
+endfunction
+
+function Game_sync()
+	if Game_loaded = 0 then Game_setup()
+	Game_tween# = 60/(1.0/GetFrameTime())
+endfunction
+
+function Game_cleanup()
+	local i as integer
+	if Game_loaded = 0 then exitfunction
+	for i = 0 to Game_sprites.length
+		if GetSpriteExists( Game_sprites[i] ) then DeleteSprite( Game_sprites[i] )
+	next i
+	for i = 0 to Game_text.length
+		if GetTextExists( Game_text[i] ) then DeleteText( Game_text[i] )
+	next i
+		if GetSpriteExists(Game_fadesprite) then DeleteSprite(Game_fadesprite)
+		Game_fadesprite = 0
+		if GetImageExists(Game_fadeimage) then DeleteImage(Game_fadeimage)
+	for i = 0 to Game_images.length
+		if GetImageExists( Game_images[i] ) then DeleteImage( Game_images[i] )
+	next i
+	Game_loaded = 0
+endfunction
+
+function Game_fade( percent as float )
+	local fMul as float
+	local i as integer
+	fMul = percent / 100.0
+	if fMul > 1.0 then fMul = 1.0
+	if fMul < 0.0 then fMul = 0.0
+	if fMul = 1.0
+		if GetSpriteExists(Game_fadesprite) then DeleteSprite(Game_fadesprite)
+		Game_fadesprite = 0
+		if GetImageExists(Game_fadeimage) then DeleteImage(Game_fadeimage)
+		exitfunction
+	endif
+	if Game_loaded = 0 then Game_setup()
+	if not GetSpriteExists( Game_fadesprite )
+		Game_fadeimage = CreateImageColor(0,0,0,255)
+		Game_fadesprite = CreateSprite(Game_fadeimage)
+		SetSpriteDepth(Game_fadesprite,0)
+		SetSpritePosition(Game_fadesprite,0,0)
+		SetSpriteSize(Game_fadesprite,GetDeviceWidth(),GetDeviceHeight())
+	endif
+	SetSpriteColor(Game_fadesprite,0,0,0,255-255*fMul)
+endfunction
+
+function Game_GetNextVirtualButton( )
+	local i as integer
+	local ret as integer
+	ret = 1
+	for i = 1 to 100
+		if not GetVirtualButtonExists( i )
+			ret = i
+			exit
+		endif
+	next i
+endfunction ret
+
+
+REMSTART
+##################################################
+#### Settings: Do not make any changes below. ####
+##################################################
+
+scenename: Game
+gridx: 32.000000
+gridy: 32.000000
+gridon: 0
+sceneresolutiontext: L: 1024x768 (1.33)   iPad/iPad 2/iPad Mini
+screenwidth: 1024
+screenheight: 768
+scenebackr: 255
+scenebackg: 254
+scenebackb: 254
+scenebacka: 255
+followdeviceres: 0
+basewidth: 1024
+baseheight: 768
+scenegravityx: 0.000000
+scenegravityy: 50.000000
+scenewalltop: 1
+scenewallbottom: 1
+scenewallleft: 1
+scenewallright: 1
+scenemaxpolygon: 8
+scenepercentage: 0
+imageindex: 1
+addimage: /home/danny/Documents/AppGameKit/NoughtsAndCrosses/media/lines.png
+imageatlas: 0
+imagerows: 1
+imagecolumns: 1
+spriteindex: 0
+addtext: Text 1
+mediatype: 2
+mediavisible: 1
+mediatext: Player 1
+spriteposx: 32.000000
+spriteposy: 32.000000
+spritesizex: 158.000000
+spritesizey: 40.000000
+spritecolorx: 0.000255
+spritecolory: 0.000000
+spritecolorz: 0.000000
+spritecolorw: 255.000000
+spritedepth: 9
+spriteindex: 0
+addtext: Text 2
+mediatype: 2
+mediavisible: 1
+mediatext: Player 2
+spriteposx: 864.000000
+spriteposy: 32.000000
+spritesizex: 158.000000
+spritesizey: 40.000000
+spritecolorx: 0.000255
+spritecolory: 0.000000
+spritecolorz: 0.000000
+spritecolorw: 255.000000
+spritedepth: 9
+spriteindex: 1
+addsprite: Sprite 1
+mediatype: 1
+mediavisible: 1
+mediatext: 
+spriteposx: 359.682617
+spriteposy: 162.000000
+spritesizex: 14.636780
+spritesizey: 508.762878
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 6
+mediatype: 1
+mediavisible: 1
+mediatext: 
+spriteposx: 165.494263
+spriteposy: 322.834564
+spritesizex: 625.993652
+spritesizey: 16.457851
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 7
+mediatype: 1
+mediavisible: 1
+mediatext: 
+spriteposx: 548.575806
+spriteposy: 152.304489
+spritesizex: 14.636780
+spritesizey: 508.762878
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 8
+mediatype: 1
+mediavisible: 1
+mediatext: 
+spriteposx: 167.951004
+spriteposy: 489.456116
+spritesizex: 625.993652
+spritesizey: 16.457851
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 9
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot1
+mediatext: 
+spriteposx: 188.149414
+spriteposy: 160.232635
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 11
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot2
+mediatext: 
+spriteposx: 382.388580
+spriteposy: 160.017044
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 12
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot3
+mediatext: 
+spriteposx: 575.665100
+spriteposy: 159.801453
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 13
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot4
+mediatext: 
+spriteposx: 187.933823
+spriteposy: 335.218872
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 14
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot7
+mediatext: 
+spriteposx: 185.792938
+spriteposy: 511.167725
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 15
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot5
+mediatext: 
+spriteposx: 383.135620
+spriteposy: 335.965912
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 16
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot6
+mediatext: 
+spriteposx: 572.974060
+spriteposy: 332.508728
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 17
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot8
+mediatext: 
+spriteposx: 387.517700
+spriteposy: 506.885925
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+spriteindex: 1
+addsprite: Sprite 18
+mediatype: 1
+mediavisible: 0
+spritevariable: Game_slot9
+mediatext: 
+spriteposx: 584.448303
+spriteposy: 502.819733
+spritesizex: 156.761841
+spritesizey: 156.761841
+spritecolorx: 206.673386
+spritecolory: 206.671326
+spritecolorz: 206.671326
+spritecolorw: 255.000000
+spritedepth: 5000
+
+REMEND
