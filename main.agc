@@ -34,6 +34,13 @@ global o as integer
 o = LoadImage("o.png")
 global turn = 1
 global game_result = 0
+global clicksound as integer
+clicksound = LoadSound("ClickLight.wav")
+global winsound as integer
+winsound = LoadSound("YayWobble.wav")
+global music as integer
+music = LoadMusicOGG("music.ogg")
+global fadespeed = 2
 
 function SelectSlot(spriteid as integer)
 	SetSpriteVisible(spriteid, 1)
@@ -42,6 +49,10 @@ function SelectSlot(spriteid as integer)
 	else 
 		SetSpriteImage(spriteid, x, 1)
 	endif
+endfunction
+
+function PlayClick()
+	PlaySound(clicksound, 50)
 endfunction
 
 function TestVictory()
@@ -81,6 +92,22 @@ function TestVictory()
 	next i
 endfunction
 
+function EvalClick(id as integer, hit as integer)
+if blocks[id] = 0
+    SelectSlot(hit)
+   	blocks[id] = turn
+    TestVictory()
+    if turn = 1
+    	turn = 2
+   	else
+   		turn = 1
+  	endif
+    PlayClick()
+endif
+endfunction
+
+PlayMusicOGG(music, 1)
+
 do
     Print( ScreenFPS() )
     if current_scene = 1
@@ -89,10 +116,15 @@ do
     		print(ScreenFPS())
     		if GetVirtualButtonReleased(MainMenu_PlayButton)
     			current_scene = 2
+    			PlayClick()
     		endif
     		MainMenu_Sync()
     		Sync()
     	endwhile
+    	for fade=100 to 0 step fadespeed * -1
+    		MainMenu_fade(fade)
+    		sync()
+    	next fade
     	MainMenu_cleanup()
     endif
     if current_scene = 2 // Game
@@ -102,6 +134,10 @@ do
     		blocks[i] = 0
     	next i
     	turn = 1
+    	for fade=0 to 100 step fadespeed
+    		Game_fade(fade)
+    		sync()
+    	next fade
     	while current_scene = 2
     		print(ScreenFPS())
     		if GetPointerReleased() = 1
@@ -111,77 +147,48 @@ do
     			hit = GetSpriteHit(pointerx, pointery)
     			select hit
     				case Game_slot1
-    					if blocks[1] = 0
-    						SelectSlot(hit)
-    						blocks[1] = turn
-    					endif
+    					EvalClick(1, hit)
     				endcase
     				case Game_slot2
-    					if blocks[2] = 0
-    						SelectSlot(hit)
-    						blocks[2] = turn
-    					endif
+    					EvalClick(2, hit)
     				endcase
     				case Game_slot3
-    					if blocks[3] = 0
-    						SelectSlot(hit)
-    						blocks[3] = turn
-    					endif
+    					EvalClick(3, hit)
     				endcase
     				case Game_slot4
-    					if blocks[4] = 0
-    						SelectSlot(hit)
-    						blocks[4] = turn
-    					endif
+    					EvalClick(4, hit)
     				endcase
     				case Game_slot5
-    					if blocks[5] = 0
-    						SelectSlot(hit)
-    						blocks[5] = turn
-    					endif
+    					EvalClick(5, hit)
     				endcase
     				case Game_slot6
-    					if blocks[6] = 0
-    						SelectSlot(hit)
-    						blocks[6] = turn
-    					endif
+    					EvalClick(6, hit)
     				endcase
     				case Game_slot7
-    					if blocks[7] = 0
-    						SelectSlot(hit)
-    						blocks[7] = turn
-    					endif
+    					EvalClick(7, hit)
     				endcase
     				case Game_slot8
-    					if blocks[8] = 0
-    						SelectSlot(hit)
-    						blocks[8] = turn
-    					endif
+    					EvalClick(8, hit)
     				endcase
     				case Game_slot9
-    					if blocks[9] = 0
-    						SelectSlot(hit)
-    						blocks[9] = turn
-    					endif
+    					EvalClick(9, hit)
     				endcase
     				case default
-    					
     				endcase
     			endselect
-    			TestVictory()
-    			if turn = 1
-    				turn = 2
-    			else
-    				turn = 1
-    			endif
     		endif
     		Game_Sync()
     		Sync()
     	endwhile
+    	PlaySound(winsound, 60)
     	Game_cleanup()
     endif
     if current_scene = 3
     	EndGame_Setup()
+    	for fade=0 to 100 step fadespeed
+    		EndGame_fade(fade)
+    		sync()
+    	next fade
     	select game_result
     		case 1
     			SetTextString(EndGame_ResultText, "Player 1 Won!")
@@ -206,6 +213,10 @@ do
     		endif 
     		sync()
     	endwhile
+    	for fade=100 to 0 step fadespeed * -1
+    		EndGame_fade(fade)
+    		sync()
+    	next fade
     	EndGame_cleanup()
     endif
     Sync()

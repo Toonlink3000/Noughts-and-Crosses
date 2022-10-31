@@ -26,7 +26,7 @@ function EndGame_setup()
 	if EndGame_change_window = 1
 		SetVirtualResolution(EndGame_base_width,EndGame_base_height)
 		SetWindowSize(EndGame_device_width,EndGame_device_height,0)
-		SetClearColor(0,0,0)
+		SetClearColor(255,254,254)
 	endif
 	SetPhysicsWallTop(1)
 	SetPhysicsWallBottom(1)
@@ -36,20 +36,21 @@ function EndGame_setup()
 	EndGame_ResultText = EndGame_text[1]
 	SetTextPosition(EndGame_text[1],210.651428,61.440002)
 	SetTextSize(EndGame_text[1],125.469727)
+	SetTextColor(EndGame_text[1],0,0,0,255)
 	SetTextDepth(EndGame_text[1],9)
 	SetTextVisible(EndGame_text[1],1)
 	EndGame_button[1] = EndGame_GetNextVirtualButton()
 	AddVirtualButton(EndGame_button[1],20,20,40)
 	SetVirtualButtonText(EndGame_button[1],"Play Again")
 	EndGame_ReplayButton = EndGame_button[1]
-	SetVirtualButtonPosition(EndGame_button[1],274.285736,526.628540)
-	SetVirtualButtonSize(EndGame_button[1],220.434296,128.274292)
+	SetVirtualButtonPosition(EndGame_button[1],320.000000,634.608276)
+	SetVirtualButtonSize(EndGame_button[1],229.699707,143.960892)
 	SetVirtualButtonVisible(EndGame_button[1],1)
 	EndGame_button[2] = EndGame_GetNextVirtualButton()
 	AddVirtualButton(EndGame_button[2],20,20,40)
 	SetVirtualButtonText(EndGame_button[2],"Main Menu")
 	EndGame_MainMenuButton = EndGame_button[2]
-	SetVirtualButtonPosition(EndGame_button[2],671.451416,533.211426)
+	SetVirtualButtonPosition(EndGame_button[2],704.000000,640.000000)
 	SetVirtualButtonSize(EndGame_button[2],226.243530,142.908569)
 	SetVirtualButtonVisible(EndGame_button[2],1)
 endfunction
@@ -128,9 +129,9 @@ gridon: 1
 sceneresolutiontext: L: 1024x768 (1.33)   iPad/iPad 2/iPad Mini
 screenwidth: 1024
 screenheight: 768
-scenebackr: 0
-scenebackg: 0
-scenebackb: 0
+scenebackr: 255
+scenebackg: 254
+scenebackb: 254
 scenebacka: 255
 followdeviceres: 0
 basewidth: 1024
@@ -153,6 +154,10 @@ spriteposx: 210.651428
 spriteposy: 61.440002
 spritesizex: 582.066833
 spritesizey: 125.469727
+spritecolorx: 0.000255
+spritecolory: 0.000000
+spritecolorz: 0.000000
+spritecolorw: 255.000000
 spritedepth: 9
 spriteindex: 0
 addbutton: Button 1
@@ -160,10 +165,10 @@ mediatype: 3
 mediavisible: 1
 spritevariable: EndGame_ReplayButton
 mediatext: Play Again
-spriteposx: 274.285736
-spriteposy: 526.628540
-spritesizex: 220.434296
-spritesizey: 128.274292
+spriteposx: 320.000000
+spriteposy: 634.608276
+spritesizex: 229.699707
+spritesizey: 143.960892
 spritedepth: 9
 spriteindex: 0
 addbutton: Button 2
@@ -171,8 +176,8 @@ mediatype: 3
 mediavisible: 1
 spritevariable: EndGame_MainMenuButton
 mediatext: Main Menu
-spriteposx: 671.451416
-spriteposy: 533.211426
+spriteposx: 704.000000
+spriteposy: 640.000000
 spritesizex: 226.243530
 spritesizey: 142.908569
 spritedepth: 9

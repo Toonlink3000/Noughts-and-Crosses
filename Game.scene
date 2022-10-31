@@ -7,7 +7,7 @@ global Game_fadesprite, Game_fadeimage as integer
 global Game_tween# as float
 global Game_change_window = 1
 global Game_loaded = 0
-global Game_images as integer[4]
+global Game_images as integer[2]
 global Game_sprites as integer[14]
 global Game_sprites_count_x as float[14]
 global Game_sprites_count_y as float[14]
@@ -52,80 +52,80 @@ function Game_setup()
 	SetTextDepth(Game_text[2],9)
 	SetTextVisible(Game_text[2],1)
 	Game_sprites[1] = CreateSprite( Game_images[1] )
-	SetSpritePosition(Game_sprites[1],359.682617,162.000000)
+	SetSpritePosition(Game_sprites[1],383.682617,162.000000)
 	SetSpriteSize(Game_sprites[1],14.636780,508.762878)
 	SetSpriteDepth(Game_sprites[1],5000)
 	Game_sprites[2] = CreateSprite( Game_images[1] )
-	SetSpritePosition(Game_sprites[2],165.494263,322.834564)
+	SetSpritePosition(Game_sprites[2],189.494263,322.834564)
 	SetSpriteSize(Game_sprites[2],625.993652,16.457851)
 	SetSpriteDepth(Game_sprites[2],5000)
 	Game_sprites[3] = CreateSprite( Game_images[1] )
-	SetSpritePosition(Game_sprites[3],548.575806,152.304489)
+	SetSpritePosition(Game_sprites[3],572.575806,152.304489)
 	SetSpriteSize(Game_sprites[3],14.636780,508.762878)
 	SetSpriteDepth(Game_sprites[3],5000)
 	Game_sprites[4] = CreateSprite( Game_images[1] )
-	SetSpritePosition(Game_sprites[4],167.951004,489.456116)
+	SetSpritePosition(Game_sprites[4],191.951004,489.456116)
 	SetSpriteSize(Game_sprites[4],625.993652,16.457851)
 	SetSpriteDepth(Game_sprites[4],5000)
 	Game_sprites[5] = CreateSprite( Game_images[1] )
 	Game_slot1 = Game_sprites[5]
-	SetSpritePosition(Game_sprites[5],188.149414,160.232635)
+	SetSpritePosition(Game_sprites[5],212.149414,160.232635)
 	SetSpriteSize(Game_sprites[5],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[5],206,206,206,255)
 	SetSpriteDepth(Game_sprites[5],5000)
 	SetSpriteVisible(Game_sprites[5],0)
 	Game_sprites[6] = CreateSprite( Game_images[1] )
 	Game_slot2 = Game_sprites[6]
-	SetSpritePosition(Game_sprites[6],382.388580,160.017044)
+	SetSpritePosition(Game_sprites[6],406.388580,160.017044)
 	SetSpriteSize(Game_sprites[6],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[6],206,206,206,255)
 	SetSpriteDepth(Game_sprites[6],5000)
 	SetSpriteVisible(Game_sprites[6],0)
 	Game_sprites[7] = CreateSprite( Game_images[1] )
 	Game_slot3 = Game_sprites[7]
-	SetSpritePosition(Game_sprites[7],575.665100,159.801453)
+	SetSpritePosition(Game_sprites[7],599.665100,159.801453)
 	SetSpriteSize(Game_sprites[7],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[7],206,206,206,255)
 	SetSpriteDepth(Game_sprites[7],5000)
 	SetSpriteVisible(Game_sprites[7],0)
 	Game_sprites[8] = CreateSprite( Game_images[1] )
 	Game_slot4 = Game_sprites[8]
-	SetSpritePosition(Game_sprites[8],187.933823,335.218872)
+	SetSpritePosition(Game_sprites[8],211.933823,335.218872)
 	SetSpriteSize(Game_sprites[8],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[8],206,206,206,255)
 	SetSpriteDepth(Game_sprites[8],5000)
 	SetSpriteVisible(Game_sprites[8],0)
 	Game_sprites[9] = CreateSprite( Game_images[1] )
 	Game_slot7 = Game_sprites[9]
-	SetSpritePosition(Game_sprites[9],185.792938,511.167725)
+	SetSpritePosition(Game_sprites[9],209.792938,511.167725)
 	SetSpriteSize(Game_sprites[9],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[9],206,206,206,255)
 	SetSpriteDepth(Game_sprites[9],5000)
 	SetSpriteVisible(Game_sprites[9],0)
 	Game_sprites[10] = CreateSprite( Game_images[1] )
 	Game_slot5 = Game_sprites[10]
-	SetSpritePosition(Game_sprites[10],383.135620,335.965912)
+	SetSpritePosition(Game_sprites[10],407.135620,335.965912)
 	SetSpriteSize(Game_sprites[10],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[10],206,206,206,255)
 	SetSpriteDepth(Game_sprites[10],5000)
 	SetSpriteVisible(Game_sprites[10],0)
 	Game_sprites[11] = CreateSprite( Game_images[1] )
 	Game_slot6 = Game_sprites[11]
-	SetSpritePosition(Game_sprites[11],572.974060,332.508728)
+	SetSpritePosition(Game_sprites[11],596.974060,332.508728)
 	SetSpriteSize(Game_sprites[11],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[11],206,206,206,255)
 	SetSpriteDepth(Game_sprites[11],5000)
 	SetSpriteVisible(Game_sprites[11],0)
 	Game_sprites[12] = CreateSprite( Game_images[1] )
 	Game_slot8 = Game_sprites[12]
-	SetSpritePosition(Game_sprites[12],387.517700,506.885925)
+	SetSpritePosition(Game_sprites[12],411.517700,506.885925)
 	SetSpriteSize(Game_sprites[12],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[12],206,206,206,255)
 	SetSpriteDepth(Game_sprites[12],5000)
 	SetSpriteVisible(Game_sprites[12],0)
 	Game_sprites[13] = CreateSprite( Game_images[1] )
 	Game_slot9 = Game_sprites[13]
-	SetSpritePosition(Game_sprites[13],584.448303,502.819733)
+	SetSpritePosition(Game_sprites[13],608.448303,502.819733)
 	SetSpriteSize(Game_sprites[13],156.761841,156.761841)
 	SetSpriteColor(Game_sprites[13],206,206,206,255)
 	SetSpriteDepth(Game_sprites[13],5000)
@@ -256,7 +256,7 @@ addsprite: Sprite 1
 mediatype: 1
 mediavisible: 1
 mediatext: 
-spriteposx: 359.682617
+spriteposx: 383.682617
 spriteposy: 162.000000
 spritesizex: 14.636780
 spritesizey: 508.762878
@@ -266,7 +266,7 @@ addsprite: Sprite 6
 mediatype: 1
 mediavisible: 1
 mediatext: 
-spriteposx: 165.494263
+spriteposx: 189.494263
 spriteposy: 322.834564
 spritesizex: 625.993652
 spritesizey: 16.457851
@@ -276,7 +276,7 @@ addsprite: Sprite 7
 mediatype: 1
 mediavisible: 1
 mediatext: 
-spriteposx: 548.575806
+spriteposx: 572.575806
 spriteposy: 152.304489
 spritesizex: 14.636780
 spritesizey: 508.762878
@@ -286,7 +286,7 @@ addsprite: Sprite 8
 mediatype: 1
 mediavisible: 1
 mediatext: 
-spriteposx: 167.951004
+spriteposx: 191.951004
 spriteposy: 489.456116
 spritesizex: 625.993652
 spritesizey: 16.457851
@@ -297,7 +297,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot1
 mediatext: 
-spriteposx: 188.149414
+spriteposx: 212.149414
 spriteposy: 160.232635
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -312,7 +312,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot2
 mediatext: 
-spriteposx: 382.388580
+spriteposx: 406.388580
 spriteposy: 160.017044
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -327,7 +327,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot3
 mediatext: 
-spriteposx: 575.665100
+spriteposx: 599.665100
 spriteposy: 159.801453
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -342,7 +342,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot4
 mediatext: 
-spriteposx: 187.933823
+spriteposx: 211.933823
 spriteposy: 335.218872
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -357,7 +357,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot7
 mediatext: 
-spriteposx: 185.792938
+spriteposx: 209.792938
 spriteposy: 511.167725
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -372,7 +372,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot5
 mediatext: 
-spriteposx: 383.135620
+spriteposx: 407.135620
 spriteposy: 335.965912
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -387,7 +387,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot6
 mediatext: 
-spriteposx: 572.974060
+spriteposx: 596.974060
 spriteposy: 332.508728
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -402,7 +402,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot8
 mediatext: 
-spriteposx: 387.517700
+spriteposx: 411.517700
 spriteposy: 506.885925
 spritesizex: 156.761841
 spritesizey: 156.761841
@@ -417,7 +417,7 @@ mediatype: 1
 mediavisible: 0
 spritevariable: Game_slot9
 mediatext: 
-spriteposx: 584.448303
+spriteposx: 608.448303
 spriteposy: 502.819733
 spritesizex: 156.761841
 spritesizey: 156.761841

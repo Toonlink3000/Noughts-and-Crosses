@@ -24,7 +24,7 @@ function MainMenu_setup()
 	if MainMenu_change_window = 1
 		SetVirtualResolution(MainMenu_base_width,MainMenu_base_height)
 		SetWindowSize(MainMenu_device_width,MainMenu_device_height,0)
-		SetClearColor(0,0,0)
+		SetClearColor(255,254,254)
 	endif
 	SetPhysicsWallTop(1)
 	SetPhysicsWallBottom(1)
@@ -33,6 +33,7 @@ function MainMenu_setup()
 	MainMenu_text[1] = CreateText( "Noughts and Crosses" )
 	SetTextPosition(MainMenu_text[1],60.468571,50.468571)
 	SetTextSize(MainMenu_text[1],117.654060)
+	SetTextColor(MainMenu_text[1],0,0,0,255)
 	SetTextDepth(MainMenu_text[1],9)
 	SetTextVisible(MainMenu_text[1],1)
 	MainMenu_button[1] = MainMenu_GetNextVirtualButton()
@@ -45,11 +46,13 @@ function MainMenu_setup()
 	MainMenu_text[2] = CreateText( "Daniel Coats 2022" )
 	SetTextPosition(MainMenu_text[2],728.879333,718.584412)
 	SetTextSize(MainMenu_text[2],40.000000)
+	SetTextColor(MainMenu_text[2],0,0,0,255)
 	SetTextDepth(MainMenu_text[2],9)
 	SetTextVisible(MainMenu_text[2],1)
 	MainMenu_text[3] = CreateText( "Licenced under GPLv3" )
 	SetTextPosition(MainMenu_text[3],10.000000,715.000000)
 	SetTextSize(MainMenu_text[3],40.000000)
+	SetTextColor(MainMenu_text[3],0,0,0,255)
 	SetTextDepth(MainMenu_text[3],9)
 	SetTextVisible(MainMenu_text[3],1)
 endfunction
@@ -128,9 +131,9 @@ gridon: 1
 sceneresolutiontext: L: 1024x768 (1.33)   iPad/iPad 2/iPad Mini
 screenwidth: 1024
 screenheight: 768
-scenebackr: 0
-scenebackg: 0
-scenebackb: 0
+scenebackr: 255
+scenebackg: 254
+scenebackb: 254
 scenebacka: 255
 followdeviceres: 0
 basewidth: 1024
@@ -152,6 +155,10 @@ spriteposx: 60.468571
 spriteposy: 50.468571
 spritesizex: 924.170898
 spritesizey: 117.654060
+spritecolorx: 0.000255
+spritecolory: 0.000000
+spritecolorz: 0.000000
+spritecolorw: 255.000000
 spritedepth: 9
 spriteindex: 0
 addbutton: Button 1
@@ -173,6 +180,10 @@ spriteposx: 728.879333
 spriteposy: 718.584412
 spritesizex: 302.000000
 spritesizey: 40.000000
+spritecolorx: 0.000255
+spritecolory: 0.000000
+spritecolorz: 0.000000
+spritecolorw: 255.000000
 spritedepth: 9
 spriteindex: 0
 addtext: Text 3
@@ -183,6 +194,10 @@ spriteposx: 10.000000
 spriteposy: 715.000000
 spritesizex: 350.000000
 spritesizey: 40.000000
+spritecolorx: 0.000255
+spritecolory: 0.000000
+spritecolorz: 0.000000
+spritecolorw: 255.000000
 spritedepth: 9
 
 REMEND
