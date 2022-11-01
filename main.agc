@@ -57,10 +57,10 @@ endfunction
 
 function TestVictory()
 	for i=1 to 2
-		for j=1 to 3 //Rows
+		for j=1 to 7 step 3 //Rows
 			prog = 0
-			for k=1 to 3
-				if blocks[k * j] = i
+			for k=0 to 2
+				if blocks[k + j] = i
 					prog = prog + 1
 				endif
 			next k
